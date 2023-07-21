@@ -1,190 +1,15 @@
-// import 'package:flutter/material.dart';
-
-// class HomePage extends StatelessWidget {
-//   final TextEditingController searchController = TextEditingController();
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     body: Container(
-//       padding: EdgeInsets.all(16.0),
-//       child: Column(
-//         children: [
-//           SizedBox(height: 20.0), // Added SizedBox widget
-//           Container(
-//             decoration: BoxDecoration(
-//               color: Colors.grey[200],
-//               borderRadius: BorderRadius.circular(20.0),
-//             ),
-//             child: TextField(
-              
-//               controller: searchController,
-//               decoration: InputDecoration(
-//                 hintText: 'Search',
-//                 border: InputBorder.none,
-//                 prefixIcon: Icon(Icons.search),
-//                 contentPadding:
-//                     EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
-//               ),
-//             ),
-//           ),
-//           SizedBox(height: 20.0), // Added SizedBox widget
-//           SizedBox(
-//             height: 35.0, // Adjust the height of the ListView as per your requirement
-//             child: ListView.separated(
-//               scrollDirection: Axis.horizontal,
-//               itemBuilder: (context, index) {
-//                 return Container(
-//                   width: 100.0, // Adjust the width of each item as per your requirement
-//                   decoration: BoxDecoration(
-//                     color: Color(0xFFFDAA9D), // Set the desired color for the item
-//                     borderRadius: BorderRadius.circular(20.0), // Add circular border
-//                   ),
-//                   margin: EdgeInsets.only(right: 10.0), // Adjust the spacing between items
-//                   child: Center(
-//                     child: Text(
-//                       'Item $index',
-//                       style: TextStyle(color: Colors.white),
-//                     ),
-//                   ),
-//                 );
-//               },
-//               separatorBuilder: (context, index) {
-//                 return SizedBox(width: 8.0); // Adjust the spacing between items
-//               },
-//               itemCount: 5, // Set the number of items in the ListView
-//             ),
-//           ),
-//           SizedBox(height: 20.0), // Added SizedBox widget
-//           SingleChildScrollView(
-//             child: Column(
-//               children: [
-//                 Text('Venue 1', 
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                   fontSize: 16.0,
-//                   fontWeight: FontWeight.bold,
-//                   ),
-//                 ), 
-//                 Stack(
-//                   children: [
-//                     Card(
-//                       clipBehavior: Clip.hardEdge,
-//                       child: InkWell(
-//                         splashColor: Colors.blue.withAlpha(30),
-//                         onTap: () {
-//                           debugPrint('Card 1 tapped.');
-//                         },
-//                         child: SizedBox(
-//                           width: 375,
-//                           height: 170,
-//                           child: Image.asset(
-//                               'images/image1.jpg',
-//                               fit: BoxFit.cover,
-//                           ), 
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 15,
-//                       left: 15,
-//                       child: Container(
-//                         width: 77,
-//                         height: 25,
-//                         decoration: BoxDecoration(
-//                           color: Color(0xAFE3CE).withOpacity(1.0), 
-//                           borderRadius: BorderRadius.circular(20.0), 
-//                           ),
-//                           child: Center(child: Text('100km'),)
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 15,
-//                       right: 15,
-//                       child: Container(
-//                         width: 77,
-//                         height: 25,
-//                         decoration: BoxDecoration(
-//                           color: Color(0xAFE3CE).withOpacity(1.0), 
-//                           borderRadius: BorderRadius.circular(20.0),
-//                         ),
-//                           child: Center(child: Text('100pax'),)
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 Text('Venue 2', 
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                   fontSize: 16.0,
-//                   fontWeight: FontWeight.bold,
-//                   ),
-//                 ), 
-//                 Stack(
-//                   children: [
-//                     Card(
-//                       clipBehavior: Clip.hardEdge,
-//                       child: InkWell(
-//                         splashColor: Colors.blue.withAlpha(30),
-//                         onTap: () {
-//                           debugPrint('Card 1 tapped.');
-//                         },
-//                         child: SizedBox(
-//                           width: 375,
-//                           height: 170,
-//                           child: Image.asset(
-//                               'images/image2.jpg',
-//                               fit: BoxFit.cover,
-//                           ), 
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 15,
-//                       left: 15,
-//                       child: Container(
-//                         width: 77,
-//                         height: 25,
-//                         decoration: BoxDecoration(
-//                           color: Color(0xAFE3CE).withOpacity(1.0), 
-//                           borderRadius: BorderRadius.circular(20.0), 
-//                           ),
-//                           child: Center(child: Text('100km'),)
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 15,
-//                       right: 15,
-//                       child: Container(
-//                         width: 77,
-//                         height: 25,
-//                         decoration: BoxDecoration(
-//                           color: Color(0xAFE3CE).withOpacity(1.0), 
-//                           borderRadius: BorderRadius.circular(20.0),
-//                         ),
-//                           child: Center(child: Text('100pax'),)
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-
-//               ],
-//             ),
-//           )
-//         ],
-//       ),
-      
-//     ),
-//   );
-// }
-// }
-
-
 import 'package:flutter/material.dart';
+
 import 'venuedetails.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +18,7 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(height: 20.0), // Added SizedBox widget
+            SizedBox(height: 20.0),
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey[200],
@@ -201,43 +26,88 @@ class HomePage extends StatelessWidget {
               ),
               child: TextField(
                 controller: searchController,
+                style: TextStyle(
+                    color: Colors.black), // Set the text color of the TextField
                 decoration: InputDecoration(
                   hintText: 'Search',
+                  hintStyle:
+                      TextStyle(color: Colors.grey), // Set the hint text color
                   border: InputBorder.none,
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: Icon(Icons.search,
+                      color: Colors.black), // Set the icon color
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+                  fillColor:
+                      Colors.white, // Set the background color of the TextField
+                  filled:
+                      true, // Ensure that the TextField is filled with the background color
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 2.0), // Set border color for normal state
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide(
+                        color: Color(0xAFE3CE),
+                        width: 3.0), // Set border color for focused state
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 20.0), // Added SizedBox widget
+            SizedBox(height: 20.0),
             SizedBox(
-              height: 35.0, // Adjust the height of the ListView as per your requirement
+              height: 35.0,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: 100.0, // Adjust the width of each item as per your requirement
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFDAA9D), // Set the desired color for the item
-                      borderRadius: BorderRadius.circular(20.0), // Add circular border
-                    ),
-                    margin: EdgeInsets.only(right: 10.0), // Adjust the spacing between items
-                    child: Center(
-                      child: Text(
-                        'Item $index',
-                        style: TextStyle(color: Colors.white),
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Container(
+                      width: 100.0,
+                      decoration: BoxDecoration(
+                        color: selectedIndex == index
+                            ? Color(
+                                0xFFFDAA9D) // Set the desired color for the selected item
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(20.0),
+                        border: Border.all(
+                          color: selectedIndex == index
+                              ? Colors
+                                  .transparent // No border for the selected item
+                              : Color(
+                                  0xFFFDAA9D), // Border color for non-selected items
+                          width: 2.0,
+                        ),
+                      ),
+                      margin: EdgeInsets.only(right: 10.0),
+                      child: Center(
+                        child: Text(
+                          'Item $index',
+                          style: TextStyle(
+                            color: selectedIndex == index
+                                ? Colors
+                                    .white // Set the text color for the selected item
+                                : Colors
+                                    .black, // Text color for non-selected items
+                          ),
+                        ),
                       ),
                     ),
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return SizedBox(width: 8.0); // Adjust the spacing between items
+                  return SizedBox(width: 8.0);
                 },
-                itemCount: 5, // Set the number of items in the ListView
+                itemCount: 5,
               ),
             ),
-            SizedBox(height: 20.0), // Added SizedBox widget
+            SizedBox(height: 20.0),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -247,7 +117,8 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => VenueDetails(imagePath: 'images/image1.jpg'),
+                            builder: (context) =>
+                                VenueDetails(imagePath: 'images/image1.jpg'),
                           ),
                         );
                       },
@@ -255,6 +126,7 @@ class HomePage extends StatelessWidget {
                         imagePath: 'images/image1.jpg',
                         distance: '100km',
                         capacity: '100pax',
+                        isSelected: selectedIndex == 0,
                       ),
                     ),
                     GestureDetector(
@@ -262,7 +134,8 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => VenueDetails(imagePath: 'images/image2.jpg'),
+                            builder: (context) =>
+                                VenueDetails(imagePath: 'images/image2.jpg'),
                           ),
                         );
                       },
@@ -270,6 +143,7 @@ class HomePage extends StatelessWidget {
                         imagePath: 'images/image2.jpg',
                         distance: '200km',
                         capacity: '200pax',
+                        isSelected: selectedIndex == 1,
                       ),
                     ),
                   ],
@@ -287,11 +161,13 @@ class VenueCard extends StatelessWidget {
   final String imagePath;
   final String distance;
   final String capacity;
+  final bool isSelected;
 
   const VenueCard({
     required this.imagePath,
     required this.distance,
     required this.capacity,
+    this.isSelected = false,
   });
 
   @override
@@ -356,6 +232,15 @@ class VenueCard extends StatelessWidget {
                   child: Center(child: Text(capacity)),
                 ),
               ),
+              if (isSelected)
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
