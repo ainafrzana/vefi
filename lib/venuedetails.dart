@@ -3,6 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'bookingformpage.dart';
+
 
 class VenueDetails extends StatelessWidget {
   final String imagePath;
@@ -13,7 +15,17 @@ class VenueDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text('Venue Details'),
+         iconTheme: IconThemeData(
+          color: Colors.black, 
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -223,6 +235,30 @@ class VenueDetails extends StatelessWidget {
                 ),
               ),
             ),
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.all(10), 
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => BookingFormPage(),
+                      settings: RouteSettings(arguments: imagePath), // Pass the imagePath as arguments
+                    ),
+                  );
+                },
+                child: Text("BOOK NOW"),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  elevation: 4, 
+                  primary: Color(0xFFFDAA9D), 
+                  onPrimary: Colors.white, 
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16), 
+                ),
+              ),
+            )
           ],
         ),
       ),
