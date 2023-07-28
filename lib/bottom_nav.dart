@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:testing/homepage.dart';
+import 'package:testing/profilepage.dart';
+
 
 /// Flutter code sample for [BottomNavigationBar].
 
@@ -10,10 +12,10 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: ThemeData(
-      primarySwatch: Colors.deepOrange,
-       appBarTheme: AppBarTheme(
+        primarySwatch: Colors.deepOrange,
+        appBarTheme: AppBarTheme(
           backgroundColor: Colors.white, // Set the AppBar background color
           centerTitle: true,
         ),
@@ -31,28 +33,15 @@ class BottomNavigationBarExample extends StatefulWidget {
       _BottomNavigationBarExampleState();
 }
 
-class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample> {
+class _BottomNavigationBarExampleState
+    extends State<BottomNavigationBarExample> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  // static const List<Widget> _widgetOptions = <Widget>[
-  //   Text(
-  //     'Index 0: Home',
-  //     style: optionStyle,
-  //   ),
-  //   Text(
-  //     'Index 1: Map',
-  //     style: optionStyle,
-  //   ),
-  //   Text(
-  //     'Index 2: Profile',
-  //     style: optionStyle,
-  //   ),
-  // ];
   List<Widget> _screens = [
     HomePage(),
     // BookingsPage(),
-    // ProfilePage(),
+    //ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -66,9 +55,9 @@ class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample>
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          "images/vefilogo.png", 
+          "images/vefilogo.png",
           width: 140,
-          ),
+        ),
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -77,10 +66,10 @@ class _BottomNavigationBarExampleState extends State<BottomNavigationBarExample>
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Bookings',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.book),
+          //   label: 'Bookings',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
