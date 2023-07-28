@@ -36,7 +36,7 @@ class VenueDetails extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Rooftop Garden at Colony.',
+                'Venue Name', //edit here
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: 18.0,
@@ -48,7 +48,7 @@ class VenueDetails extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Star Boulevard, KLCC',
+                'Venue Address, State', //edit here
                 style: TextStyle(
                   fontSize: 16.0,
                 ),
@@ -80,7 +80,7 @@ class VenueDetails extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                  'Standing - 100 guests \n Cocktail - 80 guests \n Theatre - 50 guests',
+                  'Standing - 100 guests \n Cocktail - 80 guests \n Theatre - 50 guests', //edit here
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16.0,
@@ -200,7 +200,7 @@ class VenueDetails extends StatelessWidget {
                       final position = snapshot.data!;
                       return FlutterMap(
                         options: MapOptions(
-                          center: LatLng(3.161639922953687, 101.7122164279725),
+                          center: LatLng(3.161639922953687, 101.7122164279725), //edit here
                           zoom: 13.0,
                         ),
                         layers: [
@@ -213,7 +213,7 @@ class VenueDetails extends StatelessWidget {
                               Marker(
                                 width: 80.0,
                                 height: 80.0,
-                                point: LatLng(3.161639922953687, 101.7122164279725),
+                                point: LatLng(3.161639922953687, 101.7122164279725), // edit here
                                 builder: (ctx) => Container(
                                   child: Icon(
                                     Icons.location_on,
@@ -274,7 +274,7 @@ class VenueDetails extends StatelessWidget {
   }
 
   void _launchMapsNavigation() async {
-    final url = 'https://maps.google.com/?q=Star+Boulevard,KLCC';
+    final url = 'https://maps.google.com/?q=Star+Boulevard,KLCC';  // edit here //fetch map url
     if (await canLaunch(url)) {
       await launch(url);
     } else {

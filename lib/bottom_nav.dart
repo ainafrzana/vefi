@@ -71,8 +71,8 @@ class _BottomNavigationBarExampleState
           //   label: 'Bookings',
           // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.book),
+            label: 'Booking',
           ),
         ],
         currentIndex: _selectedIndex,

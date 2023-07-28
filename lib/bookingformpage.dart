@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'venuedetails.dart';
-import 'homepage.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
+
 
 class BookingFormPage extends StatefulWidget {
   @override
@@ -53,8 +53,8 @@ class _BookingFormPageState extends State<BookingFormPage> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _guestsController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
-  List<String> selectedServices = []; // List to store selected services
-  String selectedPaymentMethod = '';
+  List<String> selectedServices = []; // List to store selected services //edit here
+  String selectedPaymentMethod = ''; //edit here
 
   void _onPaymentMethodSelected(String logoPath) {
     setState(() {
@@ -81,6 +81,7 @@ class _BookingFormPageState extends State<BookingFormPage> {
 
   // Implement the submit function
   void _submitForm() {
+    //edit here
     // Add your logic to process the form data here
     // For example, you can send the data to an API or save it to a database
     // For now, we will just print the form data to the console
@@ -130,7 +131,15 @@ class _BookingFormPageState extends State<BookingFormPage> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text('Confirm & Pay'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -162,12 +171,26 @@ class _BookingFormPageState extends State<BookingFormPage> {
                       // Use the Expanded widget to allow the text container to take the remaining space
                       child: Container(
                         height: 200,
-                        child: Text(
-                          'Rooftop Garden at Colony', // Replace this with your desired text
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Venue Name', // edit here
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                            SizedBox(
+                                height:
+                                    8), // Adjust the spacing between the text and subtitle
+                            Text(
+                              'Venue Address', // edit here
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -200,8 +223,10 @@ class _BookingFormPageState extends State<BookingFormPage> {
                     ),
                     // Create form fields here
                     TextFormField(
-                      controller: _guestsController,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       decoration: InputDecoration(labelText: 'Guests'),
+                      // Additional validation and other properties can be added here if needed.
                     ),
                     SizedBox(height: 10),
                     TextFormField(
@@ -328,20 +353,20 @@ class _BookingFormPageState extends State<BookingFormPage> {
                       children: [
                         PaymentMethodWidget(
                           logoPath: 'images/touchngo_logo.png',
-                          paymentText: 'Pay with TouchNGo',
+                          paymentText: 'Pay with TnG',
                           isSelected: selectedPaymentMethod ==
                               'images/touchngo_logo.png',
                           onSelected: _onPaymentMethodSelected,
                         ),
                         PaymentMethodWidget(
-                          logoPath: 'images/grabpay.png.webp',
+                          logoPath: 'images/grabpay.png',
                           paymentText: 'Pay with GrabPay',
                           isSelected: selectedPaymentMethod ==
-                              'images/grabpay.png.webp',
+                              'images/grabpay.png',
                           onSelected: _onPaymentMethodSelected,
                         ),
                         PaymentMethodWidget(
-                          logoPath: 'images/card_logo.jpg',
+                          logoPath: 'images/card_logo.png',
                           paymentText: 'Pay with Credit/Debit Card',
                           isSelected:
                               selectedPaymentMethod == 'images/card_logo.jpg',

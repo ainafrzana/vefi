@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'venuedetails.dart';
+import 'package:location/location.dart'; // Import the location package
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,12 +13,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    const stateNames = [
+      'Selangor',
+      'Kuala Lumpur',
+      'Sarawak',
+      'Johor',
+      'Perak'
+    ];
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(height: 20.0),
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey[200],
@@ -27,31 +33,35 @@ class _HomePageState extends State<HomePage> {
               child: TextField(
                 controller: searchController,
                 style: TextStyle(
-                    color: Colors.black), // Set the text color of the TextField
+                  color: Colors.black,
+                ),
                 decoration: InputDecoration(
                   hintText: 'Search',
-                  hintStyle:
-                      TextStyle(color: Colors.grey), // Set the hint text color
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                  ),
                   border: InputBorder.none,
-                  prefixIcon: Icon(Icons.search,
-                      color: Colors.black), // Set the icon color
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
-                  fillColor:
-                      Colors.white, // Set the background color of the TextField
-                  filled:
-                      true, // Ensure that the TextField is filled with the background color
+                  fillColor: Colors.white,
+                  filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                     borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 2.0), // Set border color for normal state
+                      color: Colors.grey, // Set border color for normal state
+                      width: 2.0,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                     borderSide: BorderSide(
-                        color: Color(0xAFE3CE),
-                        width: 3.0), // Set border color for focused state
+                      color: Colors.grey, // Set border color for focused state
+                      width: 3.0,
+                    ),
                   ),
                 ),
               ),
@@ -88,13 +98,12 @@ class _HomePageState extends State<HomePage> {
                       margin: EdgeInsets.only(right: 10.0),
                       child: Center(
                         child: Text(
-                          'Item $index',
+                          stateNames[
+                              index], // Access the state name using the stateNames array
                           style: TextStyle(
                             color: selectedIndex == index
-                                ? Colors
-                                    .white // Set the text color for the selected item
-                                : Colors
-                                    .black, // Text color for non-selected items
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                       ),
@@ -107,7 +116,6 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 5,
               ),
             ),
-            SizedBox(height: 20.0),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -123,9 +131,9 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                       child: VenueCard(
-                        imagePath: 'images/image1.jpg',
-                        distance: '100km',
-                        capacity: '100pax',
+                        imagePath: 'images/image1.jpg', //edit here
+                        distance: '100km', // edit here
+                        capacity: '100pax', //edit here
                         isSelected: selectedIndex == 0,
                       ),
                     ),
@@ -140,9 +148,9 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                       child: VenueCard(
-                        imagePath: 'images/image2.jpg',
-                        distance: '200km',
-                        capacity: '200pax',
+                        imagePath: 'images/image2.jpg', //edit here
+                        distance: '200km', //edit here
+                        capacity: '200pax', //edit here
                         isSelected: selectedIndex == 1,
                       ),
                     ),
@@ -177,7 +185,7 @@ class VenueCard extends StatelessWidget {
       children: [
         SizedBox(height: 20.0),
         Text(
-          'Venue',
+          'Venue Name', //edit here
           textAlign: TextAlign.left,
           style: TextStyle(
             fontSize: 16.0,
